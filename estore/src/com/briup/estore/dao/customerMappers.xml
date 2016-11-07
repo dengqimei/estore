@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.briup.estore.dao.CustomerMapper">
+	<resultMap type="Address" id="AddressResult">
+		<id property="addrId" column="addrid"/>
+		<result property="country" column="country"/>
+		<result property="province" column="province"/>
+		<result property="city" column="city"/>
+		<result property="street1" column="street1"/>
+		<result property="street2" column="street2"/>
+	</resultMap>
+	
+	<resultMap type="Telephone" id="TelePhoneResult">
+		<id property="telId" column="telid"/>
+		<result property="homeTel" column="hometel"/>
+		<result property="officeTel" column="officetel"/>
+		<result property="mobile" column="phone"/>
+	</resultMap>
+	
+	<resultMap type="Customer" id="CustomerResult">
+		<id property="id" column="id"/> 
+		<result property="name" column="name"/>
+		<result property="password" column="password"/>
+		<result property="zip" column="zip"/>
+		<result property="email" column="email"/>
+		<association property="address" resultMap="AddressResult"></association>
+		<association property="telephone" resultMap="TelePhoneResult"></association>
+	</resultMap>
+	
+	<select id="findByName" parameterType="String" resultMap="CustomerResult">
+		select id,name,password,zip,email,addr_id,tel_id,addrid,country,province,city,street1,street2,telid,hometel,officetel,phone
+		from customer left outer join address on
+		addr_id = addrid
+		left outer join telephone on
+		tel_id = telid
+		where name = #{name}
+	</select>
+	<select id="findById" parameterType="int" resultMap="AddressResult">
+		select * from address
+		where addrid = #{id}
+	</select>
+	
+	<insert id="saveCustomer" parameterType="Customer">
+		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+			select my_seq.nextval from dual
+		</selectKey> 
+		insert into customer(id,name,password,zip,addr_id,tel_id,email)
+		values(#{id},#{name},#{password},#{zip},#{address.addrId},#{telephone.telId},#{email})
+	</insert>
+	<insert id="saveAddress" parameterType="Address">
+		<selectKey keyProperty="addrId" resultType="int" order="BEFORE">
+			select my_seq.nextval from dual
+		</selectKey>
+		insert into address(addrid,country,province,city,street1,street2)
+		values(#{addrId},#{country},#{province},#{city},#{street1},#{street2})
+	</insert>
+	<insert id="saveTelephone" parameterType="Telephone">
+	 <selectKey keyProperty="telId" resultType="int" order="BEFORE">
+			select my_seq.nextval from dual
+		</selectKey> 
+		insert into telephone(telid,hometel,officetel,phone)
+		values(#{telId},#{homeTel},#{officeTel},#{mobile})
+	</insert>
+	
+	<update id="updateAddress" parameterType="Address"> 
+		update address
+		set country=#{country},province=#{province},city=#{city},street1=#{street1},street2=#{street2}
+		where addrid = #{addrId}
+	</update>
+	<update id="updateTelephone" parameterType="Telephone">
+		update telephone
+		set hometel=#{homeTel},officeTel=#{officeTel},phone=#{mobile}
+		where telid=#{telId}
+	</update>
+	<update id="updateCustomer" parameterType="Customer">
+		update customer
+		set password=#{password},zip=#{zip},email=#{email}
+		where id=#{id}
+	</update>
+		
+</mapper>

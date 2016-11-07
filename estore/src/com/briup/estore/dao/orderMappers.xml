@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.briup.estore.dao.OrderMapper">
+	
+	<insert id="saveOrder" parameterType="Order">
+		insert into carorder(id,cost,orderdate,payway,c_id)
+		values(#{id},#{cost},#{orderDate},#{payway},#{customer.id})
+	</insert>
+	
+	<!-- <resultMap type="Order" id="OrderResult">
+		<id property="id" column="id"/>
+		<result property="cost" column="cost"/>
+		<result property="orderDate" column="orderdate"/>
+		<result property="payway" column="payway"/>
+	</resultMap> -->
+	
+	<select id="queryAll" parameterType="Long" resultType="Order">
+		select id,cost,orderDate,payway
+		from carorder
+		where c_id=#{id}
+	</select>
+	
+	<select id="findOrderById" parameterType="Long" resultType="Order">
+		select id,cost,orderDate,payway
+		from carorder
+		where id = #{id}
+	</select>
+	
+	<delete id="deleteOrder" parameterType="Long">
+		delete from carorder
+		where id=#{id}
+	</delete>
+</mapper>
