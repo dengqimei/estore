@@ -19,6 +19,8 @@ import com.briup.estore.bean.Line;
 import com.briup.estore.bean.Order;
 import com.briup.estore.bean.ShoppingCar;
 import com.briup.estore.common.exception.OrderException;
+import com.briup.estore.common.util.DateUtil;
+import com.briup.estore.common.util.IdUtil;
 import com.briup.estore.service.IOrderService;
 import com.briup.estore.service.impl.OrderServiceImpl;
 
@@ -42,7 +44,7 @@ public class SaveOrderServlet extends HttpServlet{
 		Customer customer = new Customer();
 		ShoppingCar car = new ShoppingCar();
 		Order order = new Order();
-		order.setId(System.currentTimeMillis());
+		order.setId(Long.parseLong(IdUtil.getId()));
 		if(attribute2!=null){
 			customer = (Customer) attribute2;
 			if(attribute!=null){
@@ -58,7 +60,7 @@ public class SaveOrderServlet extends HttpServlet{
 					line.setOrder(order);
 				}
 				try {
-					order.setOrderDate(new java.util.Date());
+					order.setOrderDate(DateUtil.getDate());
 					order.setCost(car.getCost());
 					order.setPayway(payway);
 					orderService.confirmOrder(customer, order, list);

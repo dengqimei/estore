@@ -44,23 +44,23 @@
 	</select>
 	
 	<insert id="saveCustomer" parameterType="Customer">
-		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+		<!-- <selectKey keyProperty="id" resultType="Long" order="BEFORE">
 			select my_seq.nextval from dual
-		</selectKey> 
+		</selectKey>  -->
 		insert into customer(id,name,password,zip,addr_id,tel_id,email)
 		values(#{id},#{name},#{password},#{zip},#{address.addrId},#{telephone.telId},#{email})
 	</insert>
 	<insert id="saveAddress" parameterType="Address">
-		<selectKey keyProperty="addrId" resultType="int" order="BEFORE">
+		<!-- <selectKey keyProperty="addrId" resultType="int" order="BEFORE">
 			select my_seq.nextval from dual
-		</selectKey>
+		</selectKey> -->
 		insert into address(addrid,country,province,city,street1,street2)
 		values(#{addrId},#{country},#{province},#{city},#{street1},#{street2})
 	</insert>
 	<insert id="saveTelephone" parameterType="Telephone">
-	 <selectKey keyProperty="telId" resultType="int" order="BEFORE">
+	 <!-- <selectKey keyProperty="telId" resultType="int" order="BEFORE">
 			select my_seq.nextval from dual
-		</selectKey> 
+		</selectKey>  -->
 		insert into telephone(telid,hometel,officetel,phone)
 		values(#{telId},#{homeTel},#{officeTel},#{mobile})
 	</insert>

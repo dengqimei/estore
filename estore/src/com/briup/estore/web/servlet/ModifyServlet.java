@@ -12,6 +12,7 @@ import com.briup.estore.bean.Address;
 import com.briup.estore.bean.Customer;
 import com.briup.estore.bean.Telephone;
 import com.briup.estore.common.exception.CustomerException;
+import com.briup.estore.common.util.MD5;
 import com.briup.estore.service.ICustomerService;
 import com.briup.estore.service.impl.CustomerServiceImpl;
 
@@ -32,15 +33,15 @@ public class ModifyServlet extends HttpServlet{
 		
 		Long id = Long.parseLong(req.getParameter("userid"));
 		String name = req.getParameter("username");
-		String password = req.getParameter("password");
-		int addrId = Integer.parseInt(req.getParameter("addrid"));
+		String password = MD5.getInstance().getMD5ofStr(req.getParameter("password"));
+		Long addrId = Long.parseLong(req.getParameter("addrid"));
 		String country = req.getParameter("country");
 		String province = req.getParameter("province");
 		String city = req.getParameter("city");
 		String street1 = req.getParameter("street1");
 		String street2 = req.getParameter("street2");
 		String zip = req.getParameter("zip");
-		int telId = Integer.parseInt(req.getParameter("telid"));
+		Long telId = Long.parseLong(req.getParameter("telid"));
 		String homeTel = req.getParameter("homephone");
 		String officeTel = req.getParameter("officephone");
 		String mobile = req.getParameter("cellphone");

@@ -6,14 +6,14 @@ public class Telephone implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int telId;
+	private Long telId;
 	private String homeTel;
 	private String officeTel;
 	private String mobile;
 	
 	public Telephone() {}
 
-	public Telephone(int telId, String homeTel, String officeTel, String mobile) {
+	public Telephone(Long telId, String homeTel, String officeTel, String mobile) {
 		this.telId = telId;
 		this.homeTel = homeTel;
 		this.officeTel = officeTel;
@@ -27,11 +27,11 @@ public class Telephone implements Serializable{
 		this.mobile = mobile;
 	}
 
-	public int getTelId() {
+	public Long getTelId() {
 		return telId;
 	}
 
-	public void setTelId(int telId) {
+	public void setTelId(Long telId) {
 		this.telId = telId;
 	}
 

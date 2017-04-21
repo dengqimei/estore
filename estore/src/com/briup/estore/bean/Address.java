@@ -6,7 +6,7 @@ public class Address implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int addrId;
+	private Long addrId;
 	private String country;
 	private String province;
 	private String city;
@@ -15,7 +15,7 @@ public class Address implements Serializable {
 	
 	public Address() {}
 
-	public Address(int addrId, String country, String province, String city, String street1, String street2) {
+	public Address(Long addrId, String country, String province, String city, String street1, String street2) {
 		this.addrId = addrId;
 		this.country = country;
 		this.province = province;
@@ -33,11 +33,11 @@ public class Address implements Serializable {
 		this.street2 = street2;
 	}
 
-	public int getAddrId() {
+	public Long getAddrId() {
 		return addrId;
 	}
 
-	public void setAddrId(int addrId) {
+	public void setAddrId(Long addrId) {
 		this.addrId = addrId;
 	}
 

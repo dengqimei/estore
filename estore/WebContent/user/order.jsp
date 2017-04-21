@@ -36,7 +36,7 @@
 			<tr>
 				<td class=tablebody2 valign=middle align=center width="">${order.id }</td>
 				<td class=tablebody1 valign=middle width="">&nbsp;&nbsp;<a
-					href="../user/orderinfo.info?orderid=1">${order.id }</a></td>
+					href="../user/orderinfo.info?orderid=${order.id }">${order.id }</a></td>
 				<td class=tablebody2 valign=middle align=left width="">&nbsp;&nbsp;￥${order.cost }</td>
 				<td class=tablebody1 valign=middle align=center width="">${order.orderDate }</td>
 				<td class=tablebody2 valign=middle align=left width="">&nbsp;&nbsp;${order.payway }

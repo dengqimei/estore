@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.briup.estore.bean.Customer;
 import com.briup.estore.bean.ShoppingCar;
 import com.briup.estore.common.exception.CustomerException;
+import com.briup.estore.common.util.MD5;
 import com.briup.estore.service.ICustomerService;
 import com.briup.estore.service.impl.CustomerServiceImpl;
 
@@ -29,7 +30,7 @@ public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String name = req.getParameter("userid");
-		String password = req.getParameter("password");
+		String password = MD5.getInstance().getMD5ofStr(req.getParameter("password"));
 		if(name!=null&&password!=null){
 			try {
 				Customer customer = customerService.login(name, password);

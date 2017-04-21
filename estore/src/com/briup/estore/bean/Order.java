@@ -1,7 +1,6 @@
 package com.briup.estore.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +15,7 @@ public class Order implements Serializable {
 	 * 价钱（总价）
 	 * */
 	private Double cost;
-	private Date orderDate;
+	private String orderDate;
 	private String payway;
 	
 	/**
@@ -31,13 +30,13 @@ public class Order implements Serializable {
 	public Order(){
 		
 	}
-	public Order(Long id, Double cost, Date orderDate) {
+	public Order(Long id, Double cost, String orderDate) {
 		this.id = id;
 		this.cost = cost;
 		this.orderDate = orderDate;
 	}
 	
-	public Order(Long id, Double cost, Date orderDate, Customer customer) {
+	public Order(Long id, Double cost, String orderDate, Customer customer) {
 		this.id = id;
 		this.cost = cost;
 		this.orderDate = orderDate;
@@ -55,10 +54,10 @@ public class Order implements Serializable {
 	public void setCost(Double cost) {
 		this.cost = cost;
 	}
-	public Date getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 	public String getPayway() {
